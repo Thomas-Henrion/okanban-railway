@@ -1,9 +1,12 @@
-name: Deploy Okanban
+name: Deploy Okanban Front
 
 on:
   push:
     branches:
       - main
+    paths:
+      - front/**
+      - .github/workflows/deploy-front.yml
 
 jobs:
   deploy-front:
@@ -26,8 +29,14 @@ jobs:
       - name: Install Railway CLI
         run: npm install -g @railway/cli
 
-      - name: Build Front Image
-        run: docker build --build-arg VITE_API_BASE_URL=${{ secrets.VITE_API_BASE_URL }} -t ${{ secrets.DOCKERHUB_USERNAME }}/okanban_front_v1:latest .
+      - name: Build the project
+        run: npm run build
+        working-directory: front
+        env:
+          VITE_API_BASE_URL: ${{ secrets.VITE_API_BASE_URL }}
+
+      - name: Build Front Images
+        run: docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/okanban_front_v1:latest .
         working-directory: front
 
       - name: Log in to Docker Hub
