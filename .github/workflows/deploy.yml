@@ -29,6 +29,8 @@ jobs:
       - name: Build the project
         run: npm run build
         working-directory: front
+        env:
+          VITE_API_BASE_URL: ${{ secrets.VITE_API_BASE_URL }}
 
       - name: Build Front Images
         run: docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/okanban_front_v1:latest .
