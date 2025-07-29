@@ -48,7 +48,7 @@ jobs:
         env:
           RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
         run: |
-          railway up --project okanban-api --env production
+          railway up -- --project okanban-api --env production
 
 
     
