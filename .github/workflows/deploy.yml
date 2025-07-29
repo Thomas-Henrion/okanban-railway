@@ -23,6 +23,11 @@ jobs:
         run: npm ci
         working-directory: front
 
+      - name: Install Railway CLI
+        run: |
+          curl -sSL https://railway.app/install.sh | sh
+          echo "$HOME/.railway/bin" >> $GITHUB_PATH
+
       - name: Build the project
         run: npm run build
         working-directory: front
@@ -47,4 +52,5 @@ jobs:
         run: |
           npx railway up --project okanban-api --env production
 
-     
+
+    
