@@ -24,9 +24,7 @@ jobs:
         working-directory: front
 
       - name: Install Railway CLI
-        run: |
-          curl -sSL https://railway.app/install.sh | sh
-          echo "$HOME/.railway/bin" >> $GITHUB_PATH
+        run: npm install -g @railway/cli
 
       - name: Build the project
         run: npm run build
@@ -50,7 +48,7 @@ jobs:
         env:
           RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
         run: |
-          npx railway up --project okanban-api --env production
+          railway up --project okanban-api --env production
 
 
     
