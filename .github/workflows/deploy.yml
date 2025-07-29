@@ -50,7 +50,7 @@ jobs:
         env:
           RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
         run: |
-          railway up -- --project okanban-api --env production
+          railway up --service okanban_front_v1 -e production
 
 
     
